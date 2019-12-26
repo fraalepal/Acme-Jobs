@@ -10,4 +10,4 @@
 
 - It makes sense to rename DomainEntity as AbstractEntity and DomainDatatype as AbstractDatatype.
 - It makes sense to provide an AbstractFormObject base class for form objects. 
-- URL input boxes should allow to jump to the URL.
+- URL input boxes should allow to jump to the URL. 
