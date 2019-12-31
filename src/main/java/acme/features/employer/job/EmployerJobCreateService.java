@@ -82,7 +82,7 @@ public class EmployerJobCreateService implements AbstractCreateService<Employer,
 
 		String title = (String) request.getModel().getAttribute("title");
 		Long countBadWordsInTitle = badWords.filter(x -> title.contains(x)).count();
-		errors.state(request, countBadWordsInTitle < spam.getThreshold(), "title", ""The title of the job has spam");
+		errors.state(request, countBadWordsInTitle < spam.getThreshold(), "title", ""The title of the job has spam.");
 
 	}
 
