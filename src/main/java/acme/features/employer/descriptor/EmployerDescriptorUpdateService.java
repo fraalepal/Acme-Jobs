@@ -67,7 +67,7 @@ public class EmployerDescriptorUpdateService implements AbstractUpdateService<Em
 		assert errors != null;
 
 		//Si el Job ya está publicado, no puede actualizarse
-		errors.state(request, !entity.getJob().isFinalMode(), "description", "employer.job.isAlreadyPublished");
+		errors.state(request, !entity.getJob().isFinalMode(), "description", "A job that is already published can't be updated.");
 
 		//Spam
 		SpamFilter spam = this.repository.findAllSpamFilters().stream().collect(Collectors.toList()).get(0);
@@ -75,7 +75,7 @@ public class EmployerDescriptorUpdateService implements AbstractUpdateService<Em
 
 		String description = (String) request.getModel().getAttribute("description");
 		Long countBadWordsInDescription = badWords.filter(x -> description.contains(x)).count();
-		errors.state(request, countBadWordsInDescription < spam.getThreshold(), "description", "employer.descriptor.descriptionHasSpam");
+		errors.state(request, countBadWordsInDescription < spam.getThreshold(), "description", "The description has spam.");
 	}
 
 	@Override
