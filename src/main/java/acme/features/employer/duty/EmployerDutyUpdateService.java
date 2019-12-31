@@ -65,7 +65,7 @@ public class EmployerDutyUpdateService implements AbstractUpdateService<Employer
 		assert errors != null;
 
 		//Si el Job ya está publicado, no puede actualizarse
-		errors.state(request, !entity.getDescriptor().getJob().isFinalMode(), "title", "employer.job.isAlreadyPublished");
+		errors.state(request, !entity.getDescriptor().getJob().isFinalMode(), "title", "A job that is already published can't be updated.");
 
 		//Spam
 		SpamFilter spam = this.repository.findAllSpamFilters().stream().collect(Collectors.toList()).get(0);
@@ -73,12 +73,12 @@ public class EmployerDutyUpdateService implements AbstractUpdateService<Employer
 
 		String title = (String) request.getModel().getAttribute("title");
 		Long countBadWordsInTitle = badWords.filter(x -> title.contains(x)).count();
-		errors.state(request, countBadWordsInTitle < spam.getThreshold(), "status", "employer.duty.titleHasSpam");
+		errors.state(request, countBadWordsInTitle < spam.getThreshold(), "status", "The title of the duty has spam.");
 
 		Stream<String> badWords2 = Stream.of(spam.getBadWords().split(","));
 		String description = (String) request.getModel().getAttribute("description");
 		Long countBadWordsInDescription = badWords2.filter(x -> description.contains(x)).count();
-		errors.state(request, countBadWordsInDescription < spam.getThreshold(), "status", "employer.duty.descriptionHasSpam");
+		errors.state(request, countBadWordsInDescription < spam.getThreshold(), "status", "The description of the duty has spam.");
 	}
 
 	@Override
