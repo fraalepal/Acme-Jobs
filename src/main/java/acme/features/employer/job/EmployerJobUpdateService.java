@@ -68,7 +68,7 @@ public class EmployerJobUpdateService implements AbstractUpdateService<Employer,
 		assert errors != null;
 
 		//Si el Job ya está publicado, no puede actualizarse
-		errors.state(request, !entity.isFinalMode(), "status", "employer.job.isAlreadyPublished");
+		errors.state(request, !entity.isFinalMode(), "status", "A job that is already published can't be updated.");
 
 		//Spam
 		SpamFilter spam = this.repository.findAllSpamFilters().stream().collect(Collectors.toList()).get(0);
@@ -76,7 +76,7 @@ public class EmployerJobUpdateService implements AbstractUpdateService<Employer,
 
 		String title = (String) request.getModel().getAttribute("title");
 		Long countBadWordsInTitle = badWords.filter(x -> title.contains(x)).count();
-		errors.state(request, countBadWordsInTitle < spam.getThreshold(), "title", "employer.job.titleHasSpam");
+		errors.state(request, countBadWordsInTitle < spam.getThreshold(), "title", "The title of the job has spam.");
 
 		//Si va a hacerse Published, comprobamos que los Duties suman el 100%
 		if (request.getModel().getAttribute("status").equals("Published")) {
@@ -85,12 +85,12 @@ public class EmployerJobUpdateService implements AbstractUpdateService<Employer,
 
 			//Duties
 			Integer dutiesPercentage = duties.stream().map(x -> x.getTimePercentage()).collect(Collectors.summingInt(x -> x));
-			errors.state(request, dutiesPercentage == 100, "status", "employer.job.dutiesNotSum100");
+			errors.state(request, dutiesPercentage == 100, "status", "The percentage of the duties don't sum 100.");
 		}
 
 		//Aseguramos que el status es Published o Draft
 		Boolean correctStatus = request.getModel().getAttribute("status").equals("Published") || request.getModel().getAttribute("status").equals("Draft");
-		errors.state(request, correctStatus, "status", "employer.job.statusIsNotCorrect");
+		errors.state(request, correctStatus, "status", "The status must be Published or Draft.");
 
 	}
 
