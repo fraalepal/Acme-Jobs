@@ -1,0 +1,14 @@
+-En la list de duties y de audit records no hay boton de volver
+-POST not supported al crear application porque la variable direccionaplication se borra
+-Null pointer al enviar dos veces el formde crear mensaje porque en el link el 
+campo id esta vacio
+-Los salarios arreglar los placeholders 
+-El link del employer para ver los applications en sus jobs no va
+-POner bonito el error de que las duties sumen 100
+-Null pointer al enviar dos veces el form de crear duty porque en el link el 
+campo id esta vacio
+-Las propiedades del show de job estan sin read only y el estado del job 
+se pone automaticamente en draft
+-Form de auditor se puede dejar en blanco
+-¿Pregunta: todos los show deben de ser read-only o solo algunos? En cualquier caso
+revisar esto en todos los show
