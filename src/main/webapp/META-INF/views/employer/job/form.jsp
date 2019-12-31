@@ -12,6 +12,13 @@
 	<acme:form-moment code="employer.job.form.label.deadline" path="deadline" />
 	<acme:form-money code="employer.job.form.label.salary" path="salary" />
 	<acme:form-url code="employer.job.form.label.moreInfo" path="moreInfo" />
+	
+	<jstl:if test="${command == 'create'}">
+		<acme:message code="employer.job.form.label.messageoptional"/>
+		<acme:form-textarea code="employer.job.form.label.description" path="description" />
+		<acme:form-url code="employer.job.form.label.link"  path="link" />
+	</jstl:if>
+
 
 	<jstl:if test="${command != 'create'}">
 		<acme:form-select code="employer.job.form.label.status" path="status">
