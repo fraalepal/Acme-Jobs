@@ -1,4 +1,3 @@
--En la list de duties y de audit records no hay boton de volver
 -POST not supported al crear application porque la variable direccionaplication se borra
 -Null pointer al enviar dos veces el formde crear mensaje porque en el link el 
 campo id esta vacio
