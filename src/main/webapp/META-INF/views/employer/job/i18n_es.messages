@@ -8,13 +8,6 @@ employer.job.form.label.title = Título
 employer.job.form.label.deadline = Fecha límite
 employer.job.form.label.salary = Salario
 employer.job.form.label.moreInfo = Más información
-
-
-employer.job.form.label.messageoptional = Entidad Opcional
-employer.job.form.label.description = Descripción
-employer.job.form.label.link = Enlace
-
-
 employer.job.form.label.status = Estado
 employer.job.form.label.status.draft = Borrador
 employer.job.form.label.status.published = Publicado

@@ -58,10 +58,4 @@ public class Job extends DomainEntity {
 	@Valid
 	@ManyToOne(optional = false)
 	private Employer			employer;
-	
-	
-//	//CONTROL CHECK
-//	@Valid
-//	@OneToOne(optional=true)
-//	private Optionaljob optional;
 }
