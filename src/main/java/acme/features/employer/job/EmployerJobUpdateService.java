@@ -85,7 +85,7 @@ public class EmployerJobUpdateService implements AbstractUpdateService<Employer,
 
 			//Duties
 			Integer dutiesPercentage = duties.stream().map(x -> x.getTimePercentage()).collect(Collectors.summingInt(x -> x));
-			errors.state(request, dutiesPercentage == 100, "status", "The percentage of the duties doesn't sum 100.");
+			errors.state(request, dutiesPercentage == 100, "status", "The percentages of the duties don't sum 100.");
 		}
 
 		//Aseguramos que el status es Published o Draft
