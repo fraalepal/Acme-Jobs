@@ -67,7 +67,7 @@ public class EmployerJobDeleteService implements AbstractDeleteService<Employer,
 
 		Collection<Application> a = this.repository.findApplicationsByJobId(entity.getId());
 
-		errors.state(request, a.size() == 0, "title", "employer.job.existsApplicationsForIt");
+		errors.state(request, a.size() == 0, "title", "There are applications for this job.");
 
 	}
 
