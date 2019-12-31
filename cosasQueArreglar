@@ -3,7 +3,6 @@
 -Null pointer al enviar dos veces el formde crear mensaje porque en el link el 
 campo id esta vacio
 -Los salarios arreglar los placeholders 
--El link del employer para ver los applications en sus jobs no va
 -POner bonito el error de que las duties sumen 100
 -Null pointer al enviar dos veces el form de crear duty porque en el link el 
 campo id esta vacio
@@ -12,3 +11,5 @@ se pone automaticamente en draft
 -Form de auditor se puede dejar en blanco
 -¿Pregunta: todos los show deben de ser read-only o solo algunos? En cualquier caso
 revisar esto en todos los show
+-En application show de Employer, todas las propiedades deben ser readonly menos motivo. Además motivo debe ser text-area y no text-box.
+-En el application show de Worker, el motivo del rechazo de la application no se muestra en el formulario.
