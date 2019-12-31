@@ -79,12 +79,12 @@ public class EmployerDutyCreateService implements AbstractCreateService<Employer
 
 		String title = (String) request.getModel().getAttribute("title");
 		Long countBadWordsInTitle = badWords.filter(x -> title.contains(x)).count();
-		errors.state(request, countBadWordsInTitle < spam.getThreshold(), "title", "employer.duty.titleHasSpam");
+		errors.state(request, countBadWordsInTitle < spam.getThreshold(), "title", "The title of the duty has spam.");
 
 		Stream<String> badWords2 = Stream.of(spam.getBadWords().split(","));
 		String description = (String) request.getModel().getAttribute("description");
 		Long countBadWordsInDescription = badWords2.filter(x -> description.contains(x)).count();
-		errors.state(request, countBadWordsInDescription < spam.getThreshold(), "description", "employer.duty.descriptionHasSpam");
+		errors.state(request, countBadWordsInDescription < spam.getThreshold(), "description", "The description of the duty has spam.");
 	}
 
 	@Override
