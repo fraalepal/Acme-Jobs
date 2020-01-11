@@ -410,7 +410,7 @@
 		<property name="title" value="Sample job 01" />
 		<property name="deadline" value="2020/09/01 12:12" />
 		<property name="salary" value="$ 2,000.00" />
-		<property name="moreInfo" value="http://wwww.ej.com" />
+		<property name="moreInfo" value="http://www.ej.com" />
 		<property name="finalMode" value="true" />
 		<property name="employer" ref="employer1Employer" />
 	</bean>
@@ -421,7 +421,7 @@
 		<property name="title" value="Sample job 02" />
 		<property name="deadline" value="2020/03/21 21:09" />
 		<property name="salary" value="$ 1,000.00" />
-		<property name="moreInfo" value="http://wwww.ej2.com" />
+		<property name="moreInfo" value="http://www.ej2.com" />
 		<property name="finalMode" value="true" />
 		<property name="employer" ref="employer1Employer" />
 	</bean>
@@ -432,7 +432,7 @@
 		<property name="title" value="Sample job 03" />
 		<property name="deadline" value="2021/11/11 21:09" />
 		<property name="salary" value="$ 900.00" />
-		<property name="moreInfo" value="http://wwww.ej3.com" />
+		<property name="moreInfo" value="http://www.ej3.com" />
 		<property name="finalMode" value="true" />
 		<property name="employer" ref="employer1Employer" />
 	</bean>

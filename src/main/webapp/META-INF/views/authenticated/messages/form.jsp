@@ -37,7 +37,7 @@
 
 	<acme:form-submit test="${command=='create'}"
 		code="authenticated.messages.form.button.create"
-		action="/authenticated/messages/create?id=${idThread}" />
+		action="${direccionThread}" />
 	<acme:form-return code="authenticated.messages.form.button.return" />
 
 </acme:form>

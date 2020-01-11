@@ -1,0 +1,25 @@
+WARN [org.hibernate.engine.jdbc.spi.SqlExceptionHelper] SQL Error: 1055, SQLState: 42000
+ERROR [org.hibernate.engine.jdbc.spi.SqlExceptionHelper] Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'acme-jobs.applicatio0_.id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+ERROR [org.apache.jsp.META_002dINF.views.framework.panic_jsp] HTTP GET /acme-jobs/META-INF/views/framework/page.jsp HTTP/1.1
+ERROR [org.apache.jsp.META_002dINF.views.framework.panic_jsp] Status: 500
+ERROR [org.apache.jsp.META_002dINF.views.framework.panic_jsp] Exception: org.springframework.orm.jpa.vendor.HibernateJpaDialect.convertHibernateAccessException(HibernateJpaDialect.java:279): could not extract ResultSet; SQL [n/a]; nested exception is org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+org.hibernate.exception.internal.SQLExceptionTypeDelegate.convert(SQLExceptionTypeDelegate.java:63): could not extract ResultSet
+com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120): Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'acme-jobs.applicatio0_.id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+ERROR [org.apache.jsp.META_002dINF.views.framework.panic_jsp] HTTP POST /acme-jobs/META-INF/views/framework/page.jsp HTTP/1.1
+ERROR [org.apache.jsp.META_002dINF.views.framework.panic_jsp] Status: 500
+ERROR [org.apache.jsp.META_002dINF.views.framework.panic_jsp] Exception: java.lang.NullPointerException
+ERROR [org.apache.catalina.util.LifecycleBase] at org.apache.catalina.connector.Connector.startInternal(Connector.java:1008): Protocol handler start failed
+at sun.nio.ch.Net.bind0(Native Method): La dirección ya se está usando
+ERROR [org.springframework.boot.diagnostics.LoggingFailureAnalysisReporter] ***************************
+APPLICATION FAILED TO START
+***************************
+Description:
+The Tomcat connector configured to listen on port 8080 failed to start. The port may already be in use or the connector may be misconfigured.
+Action:
+Verify the connector's configuration, identify and stop any process that's listening on port 8080, or configure this application to listen on another port.
+ERROR [org.apache.jsp.META_002dINF.views.framework.panic_jsp] HTTP POST /acme-jobs/META-INF/views/framework/page.jsp HTTP/1.1
+ERROR [org.apache.jsp.META_002dINF.views.framework.panic_jsp] Status: 500
+ERROR [org.apache.jsp.META_002dINF.views.framework.panic_jsp] Exception: org.springframework.web.servlet.mvc.method.RequestMappingInfoHandlerMapping.handleNoMatch(RequestMappingInfoHandlerMapping.java:200): Request method 'POST' not supported
+ERROR [org.apache.jsp.META_002dINF.views.framework.panic_jsp] HTTP POST /acme-jobs/META-INF/views/framework/page.jsp HTTP/1.1
+ERROR [org.apache.jsp.META_002dINF.views.framework.panic_jsp] Status: 500
+ERROR [org.apache.jsp.META_002dINF.views.framework.panic_jsp] Exception: java.lang.NullPointerException
