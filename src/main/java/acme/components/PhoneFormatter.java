@@ -18,21 +18,20 @@ public class PhoneFormatter implements Formatter<Phone> {
 
 	@Override
 	public String print(final Phone object, final Locale locale) {
-		assert object != null;
-		assert locale != null;
+    assert object != null;
+    assert locale != null;
 
-		String result = null;
-		String countryCodeText, areaCodeText, numberText = null;
+    String result;
+    String countryCodeText, areaCodeText, numberText;
 
-		countryCodeText = String.format("%d", object.getCountryCode());
-		areaCodeText = object.getAreaCode() == null ? " " : String.format(" (%s) ", object.getAreaCode());
-		numberText = String.format("%s", object.getNumber());
+    countryCodeText = String.format("%d", object.getCountryCode());
+    areaCodeText = object.getAreaCode() == null ? " " : String.format(" (%s) ", object.getAreaCode());
+    numberText = String.format("%s", object.getNumber());
 
-		result = String.format("+%s%s%s", countryCodeText, areaCodeText, numberText);
+    result = String.format("+%s%s%s", countryCodeText, areaCodeText, numberText);
 
-		return result;
-
-	}
+    return result;
+}
 
 	@Override
 	public Phone parse(final String text, final Locale locale) throws ParseException {
