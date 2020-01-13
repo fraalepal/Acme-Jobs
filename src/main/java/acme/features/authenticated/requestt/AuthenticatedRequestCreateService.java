@@ -68,7 +68,6 @@ public class AuthenticatedRequestCreateService implements AbstractCreateService<
 		assert errors != null;
 
 		char currency;
-		System.out.println(request.getModel().getString("reward"));
 		if (request.getModel().getString("reward") != "") {
 			int length = request.getModel().getString("reward").length();
 			currency = request.getModel().getString("reward").charAt(length - 1);

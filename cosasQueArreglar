@@ -1,10 +1,6 @@
--POST not supported al crear application porque la variable direccionaplication se borra
--Los salarios arreglar los placeholders 
 -Las propiedades del show de job estan sin read only y el estado del job 
 se pone automaticamente en draft
--Form de auditor se puede dejar en blanco
+-En form de auditor no se puede mandar vacio eor los errores no salen 
 -Revisar que los readonly en los Shows solo se están puestos donde deben.
--En application show de Employer, todas las propiedades deben ser readonly menos motivo. Además motivo debe ser text-area y no text-box.
--En el application show de Worker, el motivo del rechazo de la application no se muestra en el formulario.
 -En el update de job cuando hay un fallo no estan los botones de descriptor y duties
 -En crear mensaje el icono de confirmar debería estar marcado para crear el mensaje no?

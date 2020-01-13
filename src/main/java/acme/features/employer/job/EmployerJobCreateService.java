@@ -80,6 +80,10 @@ public class EmployerJobCreateService implements AbstractCreateService<Employer,
 		SpamFilter spam = this.repository.findAllSpamFilters().stream().collect(Collectors.toList()).get(0);
 		Stream<String> badWords = Stream.of(spam.getBadWords().split(","));
 
+		int length = request.getModel().getString("salary").length();
+		char currency = request.getModel().getString("salary").charAt(length - 1);
+		errors.state(request, currency == '€', "salary", "authenticated.request.error.eur");
+
 		String title = (String) request.getModel().getAttribute("title");
 		Long countBadWordsInTitle = badWords.filter(x -> title.contains(x)).count();
 		errors.state(request, countBadWordsInTitle < spam.getThreshold(), "title", "The title of the job has spam.");
