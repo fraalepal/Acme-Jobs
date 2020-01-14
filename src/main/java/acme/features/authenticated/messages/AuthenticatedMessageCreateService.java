@@ -12,6 +12,7 @@ import acme.entities.messages.Messages;
 import acme.entities.spamFilters.SpamFilter;
 import acme.entities.threads.Thread;
 import acme.framework.components.Errors;
+import acme.framework.components.HttpMethod;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
 import acme.framework.entities.Authenticated;
@@ -48,6 +49,12 @@ public class AuthenticatedMessageCreateService implements AbstractCreateService<
 		assert request != null;
 		assert entity != null;
 		assert model != null;
+
+		if (request.isMethod(HttpMethod.GET)) {
+			model.setAttribute("accept", "false");
+		} else {
+			request.transfer(model, "accept");
+		}
 
 		int idThread = request.getModel().getInteger("id");
 		model.setAttribute("idThread", idThread);
@@ -86,6 +93,13 @@ public class AuthenticatedMessageCreateService implements AbstractCreateService<
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
+
+		int idThread = request.getModel().getInteger("id");
+		request.getModel().setAttribute("idThread", idThread);
+
+		boolean checkbox;
+		checkbox = request.getModel().getBoolean("accept");
+		errors.state(request, checkbox, "accept", "Debe marcar la casilla para publicar el mensaje.");
 
 		String title = entity.getTitle();
 		String[] titleArray = title.split(" ");
