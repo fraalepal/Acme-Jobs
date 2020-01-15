@@ -33,7 +33,6 @@ public class AnonymousUserAccountCreateService implements AbstractCreateService<
 	@Autowired
 	AnonymousUserAccountRepository repository;
 
-
 	@Override
 	public boolean authorise(final Request<UserAccount> request) {
 		assert request != null;
@@ -56,7 +55,8 @@ public class AnonymousUserAccountCreateService implements AbstractCreateService<
 		assert entity != null;
 		assert model != null;
 
-		request.unbind(entity, model, "username", "identity.name", "identity.surname", "identity.email");
+		request.unbind(entity, model, "username", "identity.name", "identity.surname", "identity.email",
+				"identity.phone");
 
 		if (request.isMethod(HttpMethod.GET)) {
 			model.setAttribute("password", "");

@@ -20,6 +20,9 @@
 	<acme:form-textbox code="worker.application.form.label.reference" path="reference" readonly="true"/>
 	<acme:form-moment code="worker.application.form.label.moment" path="moment" readonly="true"/>
 	<acme:form-textbox code="worker.application.form.label.status" path="status" readonly="true"/>
+		<jstl:if test="${motivo != '' }">
+		<acme:form-textarea code="worker.application.form.label.reason" path="motivo" readonly="true"/>
+		</jstl:if>
 	</jstl:if>
 	<acme:form-textarea code="worker.application.form.label.statement" path="statement" />
 	<acme:form-textbox code="worker.application.form.label.skills" path="skills" />
