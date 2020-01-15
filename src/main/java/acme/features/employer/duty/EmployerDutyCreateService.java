@@ -48,6 +48,8 @@ public class EmployerDutyCreateService implements AbstractCreateService<Employer
 
 		int descId = request.getModel().getInteger("id");
 		model.setAttribute("descId", descId);
+		String direccionDuty = "../duty/create?id=" + request.getModel().getInteger("id");
+		model.setAttribute("direccionDuty", direccionDuty);
 
 		request.unbind(entity, model, "title", "description", "timePercentage", "descriptor");
 
@@ -85,6 +87,9 @@ public class EmployerDutyCreateService implements AbstractCreateService<Employer
 		String description = (String) request.getModel().getAttribute("description");
 		Long countBadWordsInDescription = badWords2.filter(x -> description.contains(x)).count();
 		errors.state(request, countBadWordsInDescription < spam.getThreshold(), "description", "The description of the duty has spam.");
+
+		String direccionDuty = "../duty/create?id=" + request.getModel().getInteger("id");
+		request.getModel().setAttribute("direccionDuty", direccionDuty);
 	}
 
 	@Override

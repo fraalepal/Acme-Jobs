@@ -1,3 +1,4 @@
+
 package acme.features.authenticated.messages;
 
 import java.util.Date;
@@ -12,6 +13,7 @@ import acme.entities.messages.Messages;
 import acme.entities.spamFilters.SpamFilter;
 import acme.entities.threads.Thread;
 import acme.framework.components.Errors;
+import acme.framework.components.HttpMethod;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
 import acme.framework.entities.Authenticated;
@@ -24,8 +26,9 @@ public class AuthenticatedMessageCreateService implements AbstractCreateService<
 	@Autowired
 	AuthenticatedMessageRepository repository;
 
+
 	@Override
-	public boolean authorise(Request<Messages> request) {
+	public boolean authorise(final Request<Messages> request) {
 		// TODO Auto-generated method stub
 		assert request != null;
 
@@ -33,7 +36,7 @@ public class AuthenticatedMessageCreateService implements AbstractCreateService<
 	}
 
 	@Override
-	public void bind(Request<Messages> request, Messages entity, Errors errors) {
+	public void bind(final Request<Messages> request, final Messages entity, final Errors errors) {
 		// TODO Auto-generated method stub
 		assert request != null;
 		assert entity != null;
@@ -43,21 +46,30 @@ public class AuthenticatedMessageCreateService implements AbstractCreateService<
 	}
 
 	@Override
-	public void unbind(Request<Messages> request, Messages entity, Model model) {
+	public void unbind(final Request<Messages> request, final Messages entity, final Model model) {
 		// TODO Auto-generated method stub
 		assert request != null;
 		assert entity != null;
 		assert model != null;
 
+		if (request.isMethod(HttpMethod.GET)) {
+			model.setAttribute("accept", "false");
+		} else {
+			request.transfer(model, "accept");
+		}
+
 		int idThread = request.getModel().getInteger("id");
 		model.setAttribute("idThread", idThread);
+
+		String direccionThread = "../messages/create?id=" + request.getModel().getInteger("id");
+		model.setAttribute("direccionThread", direccionThread);
 
 		request.unbind(entity, model, "title", "moment", "tags", "body", "user");
 
 	}
 
 	@Override
-	public Messages instantiate(Request<Messages> request) {
+	public Messages instantiate(final Request<Messages> request) {
 		// TODO Auto-generated method stub
 		assert request != null;
 
@@ -81,11 +93,18 @@ public class AuthenticatedMessageCreateService implements AbstractCreateService<
 	}
 
 	@Override
-	public void validate(Request<Messages> request, Messages entity, Errors errors) {
+	public void validate(final Request<Messages> request, final Messages entity, final Errors errors) {
 		// TODO Auto-generated method stub
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
+
+		int idThread = request.getModel().getInteger("id");
+		request.getModel().setAttribute("idThread", idThread);
+
+		boolean checkbox;
+		checkbox = request.getModel().getBoolean("accept");
+		errors.state(request, checkbox, "accept", "Debe marcar la casilla para publicar el mensaje.");
 
 		String title = entity.getTitle();
 		String[] titleArray = title.split(" ");
@@ -100,25 +119,24 @@ public class AuthenticatedMessageCreateService implements AbstractCreateService<
 		String[] spamArray = spamWords.split(",");
 		Double threshold = spamF.getThreshold();
 
-		List<String> spamList = IntStream.range(0, spamArray.length).boxed().map(x -> spamArray[x].trim())
-				.collect(Collectors.toList());
+		List<String> spamList = IntStream.range(0, spamArray.length).boxed().map(x -> spamArray[x].trim()).collect(Collectors.toList());
 
-		Integer numSpamTitle = (int) IntStream.range(0, titleArray.length).boxed().map(x -> titleArray[x].trim())
-				.filter(i -> spamList.contains(i)).count();
-		Integer numSpamTags = (int) IntStream.range(0, tagsArray.length).boxed().map(x -> tagsArray[x].trim())
-				.filter(i -> spamList.contains(i)).count();
-		Integer numSpamBody = (int) IntStream.range(0, bodyArray.length).boxed().map(x -> bodyArray[x].trim())
-				.filter(i -> spamList.contains(i)).count();
+		Integer numSpamTitle = (int) IntStream.range(0, titleArray.length).boxed().map(x -> titleArray[x].trim()).filter(i -> spamList.contains(i)).count();
+		Integer numSpamTags = (int) IntStream.range(0, tagsArray.length).boxed().map(x -> tagsArray[x].trim()).filter(i -> spamList.contains(i)).count();
+		Integer numSpamBody = (int) IntStream.range(0, bodyArray.length).boxed().map(x -> bodyArray[x].trim()).filter(i -> spamList.contains(i)).count();
 		boolean isFreeOfSpamTitle = 100 * numSpamTitle / titleArray.length < threshold;
 		boolean isFreeOfSpamTags = 100 * numSpamTags / tagsArray.length < threshold;
 		boolean isFreeOfSpamBody = 100 * numSpamBody / bodyArray.length < threshold;
 		errors.state(request, isFreeOfSpamTitle, "title", "authenticated.message.spamWords");
 		errors.state(request, isFreeOfSpamTags, "tags", "authenticated.message.spamWords");
 		errors.state(request, isFreeOfSpamBody, "body", "authenticated.message.spamWords");
+
+		String direccionThread = "../messages/create?id=" + request.getModel().getInteger("id");
+		request.getModel().setAttribute("direccionThread", direccionThread);
 	}
 
 	@Override
-	public void create(Request<Messages> request, Messages entity) {
+	public void create(final Request<Messages> request, final Messages entity) {
 		// TODO Auto-generated method stub
 		this.repository.save(entity);
 	}

@@ -28,6 +28,6 @@
 	<jstl:when test ="${alreadyReq == 'yes'}">
 	<acme:message code="authenticathed.auditorRequest.alreadyReq"/>
 	</jstl:when>
-	</jstl:choose>
+</jstl:choose>
 	
 

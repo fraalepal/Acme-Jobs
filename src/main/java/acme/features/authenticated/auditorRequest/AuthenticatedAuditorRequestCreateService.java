@@ -69,6 +69,8 @@ public class AuthenticatedAuditorRequestCreateService implements AbstractCreateS
 		assert entity != null;
 		assert errors != null;
 
+		errors.state(request, request.getModel().getString("responsibilityStatement") != "", "responsibilityStatement", "Must be filled");
+		errors.state(request, request.getModel().getString("firm") != "", "firm", "Must be filled");
 	}
 
 	@Override
