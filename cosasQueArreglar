@@ -1,6 +1,1 @@
--Las propiedades del show de job estan sin read only y el estado del job 
-se pone automaticamente en draft
--En form de auditor no se puede mandar vacio eor los errores no salen 
 -Revisar que los readonly en los Shows solo se están puestos donde deben.
--En el update de job cuando hay un fallo no estan los botones de descriptor y duties
--En crear mensaje el icono de confirmar debería estar marcado para crear el mensaje no?

@@ -13,20 +13,25 @@
 	<acme:form-money code="employer.job.form.label.salary" path="salary" />
 	<acme:form-url code="employer.job.form.label.moreInfo" path="moreInfo" />
 
-	<jstl:if test="${command != 'create'}">
+	<jstl:if test="${command != 'create' && status == 'Draft' }">
 		<acme:form-select code="employer.job.form.label.status" path="status">
-			<acme:form-option code="employer.job.form.label.status.draft" value="Draft" />
-			<acme:form-option code="employer.job.form.label.status.published" value="Published" />
+				<acme:form-option selected="true" code="employer.job.form.label.status.draft" value="Draft" />
+				<acme:form-option code="employer.job.form.label.status.published" value="Published" />
 		</acme:form-select>
 	</jstl:if>
+	<jstl:if test="${command != 'create' && status == 'Published' }">
+			<acme:form-select readonly="true" code="employer.job.form.label.status" path="status">
+				<acme:form-option selected="true" code="employer.job.form.label.status.published" value="Published"/>
+			</acme:form-select>
+		</jstl:if>
 
 	<acme:form-return code="employer.job.form.button.return" />
-	<acme:form-submit test="${command == 'show'}" code="employer.job.form.button.update" action="/employer/job/update" />
+	<acme:form-submit test="${command == 'show' && status == 'Draft'}" code="employer.job.form.button.update" action="/employer/job/update" />
 	<acme:form-submit test="${command == 'show'}" code="employer.job.form.button.delete" action="/employer/job/delete" />
 	<acme:form-submit test="${command == 'create'}" code="employer.job.form.button.create" action="/employer/job/create" />
-	<acme:form-submit test="${command == 'update'}" code="employer.job.form.button.update" action="/employer/job/update" />
+	<acme:form-submit test="${command == 'update' && status == 'Draft'}" code="employer.job.form.button.update" action="/employer/job/update" />
 	<acme:form-submit test="${command == 'delete'}" code="employer.job.form.button.delete" action="/employer/job/delete" />
 
-	<acme:form-submit test="${command == 'show'}" code="employer.job.form.button.descriptor" action="/employer/descriptor/show?id=${descId}" method="get" />
-	<acme:form-submit test="${command == 'show'}" code="employer.job.form.button.audits" action="/authenticated/audit-record/list?id=${id}" method="get" />
+	<acme:form-submit test="${command == 'show' || command == 'update'}" code="employer.job.form.button.descriptor" action="/employer/descriptor/show?id=${descId}" method="get" />
+	<acme:form-submit test="${command == 'show' || command == 'update'}" code="employer.job.form.button.audits" action="/authenticated/audit-record/list?id=${id}" method="get" />
 </acme:form>

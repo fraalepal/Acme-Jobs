@@ -49,6 +49,10 @@ public class EmployerJobUpdateService implements AbstractUpdateService<Employer,
 		assert model != null;
 
 		request.unbind(entity, model, "reference", "title", "deadline", "salary", "moreInfo", "status");
+		int id = request.getModel().getInteger("id");
+		model.setAttribute("id", id);
+		Descriptor descp = this.repository.findOneDescriptorByJobId(id);
+		model.setAttribute("descId", descp.getId());
 	}
 
 	@Override
@@ -66,6 +70,11 @@ public class EmployerJobUpdateService implements AbstractUpdateService<Employer,
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
+		
+		int id = request.getModel().getInteger("id");
+		request.getModel().setAttribute("id", id);
+		Descriptor descp = this.repository.findOneDescriptorByJobId(id);
+		request.getModel().setAttribute("descId", descp.getId());
 
 		//Si el Job ya está publicado, no puede actualizarse
 		errors.state(request, !entity.isFinalMode(), "status", "A job that is already published can't be updated.");
