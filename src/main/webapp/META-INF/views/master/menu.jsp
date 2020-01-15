@@ -10,7 +10,6 @@
 - they accept any liabilities with respect to them.
 --%>
 
-<%@page language="java" import="acme.framework.helpers.PrincipalHelper,acme.entities.roles.Consumer"%>
 
 <%@taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
@@ -36,20 +35,16 @@
 			<acme:menu-suboption code="master.menu.administrator.shutdown" action="/master/shutdown"/>
 		</acme:menu-option>
 
-		<acme:menu-option code="master.menu.consumer" access="hasRole('Consumer')">
+    <acme:menu-option code="master.menu.authenticated" access="isAuthenticated()">
+			<acme:menu-suboption code="master.menu.authenticated.job.list" action="/authenticated/job/list"/>
+			<acme:menu-suboption code="master.menu.authenticated.thread.list" action="/authenticated/thread/list_mine"/>
 			<acme:menu-suboption code="master.menu.authenticated.announcement.list" action="/authenticated/announcement/list"/>
 			<acme:menu-suboption code="master.menu.authenticated.investor.list" action="/authenticated/investor-record/list"/>
 			<acme:menu-suboption code="master.menu.authenticated.company.list" action="/authenticated/company/list"/>
 			<acme:menu-suboption code="master.menu.authenticated.challenges.list" action="/authenticated/challenge/list"/>
 			<acme:menu-suboption code="master.menu.authenticated.offers.list" action="/authenticated/offer/list"/>
-			<acme:menu-suboption code="master.menu.authenticated.requestt.list" action="/authenticated/requestt/list"/>
-			<acme:menu-suboption code="master.menu.consumer.offer.create" action="/consumer/offer/create"/>
-		</acme:menu-option>
-		
-		<acme:menu-option code="master.menu.authenticated" access="isAuthenticated()">
-			<acme:menu-suboption code="master.menu.authenticated.job.list" action="/authenticated/job/list"/>
-			<acme:menu-suboption code="master.menu.authenticated.thread.list" action="/authenticated/thread/list_mine"/>
-		
+			<acme:menu-suboption code="master.menu.authenticated.request.list" action="/authenticated/requestt/list"/>
+			<acme:menu-suboption code="master.menu.authenticated.request.create" action="/authenticated/requestt/create"/>		
 		</acme:menu-option>
 		
 		<acme:menu-option code="master.menu.employer" access="hasRole('Employer')">
@@ -71,8 +66,6 @@
 
 		<acme:menu-option code="master.menu.user-account" access="isAuthenticated()">
 			<acme:menu-suboption code="master.menu.user-account.general-data" action="/authenticated/user-account/update"/>
-			<acme:menu-suboption code="master.menu.user-account.become-consumer" action="/authenticated/consumer/create" access="!hasRole('Consumer')"/>
-			<acme:menu-suboption code="master.menu.user-account.consumer" action="/authenticated/consumer/update" access="hasRole('Consumer')"/>
 			<acme:menu-suboption code="master.menu.user-account.become-auditor" action="/authenticated/auditor-request/create" access="!hasRole('Auditor')"/>
 			<acme:menu-suboption code="master.menu.user-account.become-worker" action="/authenticated/worker/create" access="!hasRole('Worker')"/>
 			<acme:menu-suboption code="master.menu.user-account.worker" action="/authenticated/worker/update" access="hasRole('Worker')"/>

@@ -356,7 +356,7 @@
 		<property name="ticker" value="OABCD-01234" />
 		<property name="title" value="Sample offer 01" />
 		<property name="moment" value="2019/09/01 12:12" />
-		<property name="deadline" value="2040/1/01 12:00" />
+		<property name="deadline" value="2778/1/01 12:00" />
 
 		<property name="text" value="Primera oferta de prueba" />
 		<property name="moneyMax" value="€1200.00" />
